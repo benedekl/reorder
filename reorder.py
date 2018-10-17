@@ -16,7 +16,7 @@ class Buffer():
         return self._start + len(self._buffer)
 
     def __str__(self):
-        return "{} - {}:{}:{}".format(self.start, len(self._buffer), self._buffer, self.end)
+        return "{} - {} - {}:{}:{}".format(self._count, self.start, len(self._buffer), self._buffer, self.end)
 
     def _send(self):
         data = self._buffer.pop(0)
