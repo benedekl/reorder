@@ -19,15 +19,13 @@ class Buffer():
         return "{} - {}:{}:{}".format(self.start, len(self._buffer), self._buffer, self.end)
 
     def _send(self):
-        data = self._buffer[0]
+        data = self._buffer.pop(0)
         if (data is not None):
             print("emit data at index {}: {}".format(self.start, data))
         self._start += 1
         self._count -= 1
 
-        for i in range(1, len(self._buffer)):
-            self._buffer[i - 1] = self._buffer[i]
-        self._buffer[len(self._buffer) - 1] = None
+        self._buffer.append(None)
 
     def receive(self, index, data):
         if index < self.start:
