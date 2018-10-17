@@ -34,13 +34,12 @@ class Buffer():
 
         if index > self.end:
             print("index too high: {}".format(index))
-            return
+        else:
+            if self._buffer[index - self.start] is not None:
+                print("overwriting index {}".format(index))
 
-        if self._buffer[index - self.start] is not None:
-            print("overwriting index {}".format(index))
-
-        self._buffer[index - self.start] = data
-        self._count += 1
+            self._buffer[index - self.start] = data
+            self._count += 1
 
         if index - self.start >= self._size:
             self._send()
