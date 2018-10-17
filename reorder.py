@@ -5,7 +5,6 @@ class Buffer():
         self._size = size
         self._buffer = [None] * size * 2
         self._start = 0
-        self._count = 0
 
     @property
     def start(self):
@@ -23,7 +22,6 @@ class Buffer():
         if (data is not None):
             print("emit data at index {}: {}".format(self.start, data))
         self._start += 1
-        self._count -= 1
 
         self._buffer.append(None)
 
@@ -39,7 +37,6 @@ class Buffer():
                 print("overwriting index {}".format(index))
 
             self._buffer[index - self.start] = data
-            self._count += 1
 
         if index - self.start >= self._size:
             self._send()
