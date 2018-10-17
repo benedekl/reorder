@@ -22,12 +22,18 @@ class Buffer():
         data = self._buffer.pop(0)
         if (data is not None):
             print("emit data at index {}: {}".format(self.start, data))
+            self._count -= 1
         self._start += 1
-        self._count -= 1
 
         self._buffer.append(None)
 
     def receive(self, index, data):
+        if self._count == 0:
+            if index < self._size:
+                self._start = index
+            else:
+                self._start = index - self._size
+
         if index < self.start:
             print("index too low: {}".format(index))
             return
